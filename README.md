@@ -32,6 +32,8 @@
 
 
 ## 設計書
+ER図：　https://app.diagrams.net/#G1FKnrnOAx0utSRkjcgDUHxWsLcRDhSCvD<br>
+アプリケーション詳細設計書：　https://docs.google.com/spreadsheets/d/1kxRaxaGiRb0mIDIBBX3gMed7MGA9yTgDYPlDZ5rwwIU/edit#gid=549108681<br>
 
 
 ## 開発環境
