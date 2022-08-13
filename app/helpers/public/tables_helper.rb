@@ -1,0 +1,2 @@
+module Public::TablesHelper
+end
