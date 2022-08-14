@@ -4,6 +4,7 @@ class CreateOrderDetails < ActiveRecord::Migration[6.1]
       t.integer :order_details_id
       t.integer :total_payment
       t.boolean :status
+      t.integer :menu_id
 
 
       t.timestamps

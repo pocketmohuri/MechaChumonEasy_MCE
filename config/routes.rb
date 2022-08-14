@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :customer_tables, controllers: {
+      registrations: 'publilc/registrations',
       sessions: 'public/sessions'
   }
 
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get 'about' => 'homes#about', as: 'about'
-    resources :menues, only:[:index, :show]
+    resources :menus, only:[:index, :show]
     resources :cart_items, only:[:new, :index, :create, :update, :destroy]
     resources :comments,  only:[:new, :create, :destroy]
     delete 'cart_items/all_destroy' => 'cart_items#all_destroy', as: 'all_destroy_cart_items'
@@ -32,7 +33,7 @@ Rails.application.routes.draw do
 
   get "admin" => "homes#top"
   namespace :admin do
-    resources :menues, only:[:new, :index, :create, :show, :edit, :update]
+    resources :menus, only:[:new, :index, :create, :show, :edit, :update]
     resources :genres, only:[:index, :create, :edit, :update]
     resources :users, only:[:new, :index, :create, :show, :edit, :update]
     resources :orders, only:[:index, :show, :update]

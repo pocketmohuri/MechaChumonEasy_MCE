@@ -40,12 +40,12 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_customer_table.orders.includes(:order_details, :menues).page(params[:page]).reverse_order
+    @orders = current_customer_table.orders.includes(:order_details, :menus).page(params[:page]).reverse_order
   end
 
   def show
     @order = current_customer_table.orders.find(params[:id])
-    @order_details = @order.order_details.includes(:menues)
+    @order_details = @order.order_details.includes(:menus)
   end
 
   private

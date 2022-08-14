@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_13_051140) do
+ActiveRecord::Schema.define(version: 2022_08_14_102045) do
 
   create_table "admins", force: :cascade do |t|
     t.integer "admin_id"
@@ -31,9 +31,9 @@ ActiveRecord::Schema.define(version: 2022_08_13_051140) do
   create_table "cart_items", force: :cascade do |t|
     t.integer "cart_id"
     t.integer "amount"
+    t.integer "menu_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "menues_id"
     t.integer "customer_table_id"
     t.index ["customer_table_id"], name: "index_cart_items_on_customer_table_id"
   end
@@ -75,15 +75,14 @@ ActiveRecord::Schema.define(version: 2022_08_13_051140) do
     t.boolean "is_active", default: true, null: false
   end
 
-  create_table "menues", force: :cascade do |t|
-    t.integer "menues_id"
+  create_table "menus", force: :cascade do |t|
     t.text "introduction"
     t.integer "price"
     t.boolean "is_active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "genres_id"
-    t.string "menues_name"
+    t.string "menu_name"
+    t.integer "genre_id"
   end
 
   create_table "order_details", force: :cascade do |t|
@@ -91,7 +90,6 @@ ActiveRecord::Schema.define(version: 2022_08_13_051140) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "order_id"
-    t.integer "menues_id"
     t.integer "price"
     t.integer "amount"
     t.integer "making_status"

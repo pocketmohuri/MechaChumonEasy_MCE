@@ -13,11 +13,11 @@ class Public::CartItemsController < ApplicationController
       redirect_to cart_items_path
     else
       @cart_item = current_customer_table.cart_items.new(cart_item_params)
-      @cart_item.menues_id = @item.id
+      @cart_item.menus_id = @item.id
       if @cart_item.save
         redirect_to cart_items_path
       else
-        render 'public/menues/show'
+        render 'public/menu/show'
       end
     end
   end

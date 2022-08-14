@@ -3,13 +3,13 @@ class Admin::OrdersController < ApplicationController
   # before_action :ensure_order, only: [:show, :update]
 
   def index
-    if params[:customer_id]
-      @customer = Customer.find(params[:customer_id])
+    if params[:customer_tables_name]
+      @customer = Customer.find(params[:customer_tables_name])
       @orders = @customer.orders.page(params[:page]).reverse_order
     elsif params[:created_at] == "today"
-      @orders = Order.ordered_today.includes(:customer).page(params[:page]).reverse_order
+      @orders = Order.ordered_today.includes(:customer_tables).page(params[:page]).reverse_order
     else
-      @orders = Order.includes(:customer).page(params[:page]).reverse_order
+      @orders = Order.includes(:customer_tables).page(params[:page]).reverse_order
     end
   end
 

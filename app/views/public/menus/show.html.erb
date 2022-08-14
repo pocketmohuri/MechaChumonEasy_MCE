@@ -7,31 +7,31 @@
 	</div>
 
 <div class="content">
-		<h2 class="section-ttl"><%= @menues.name %></h2>
+		<h2 class="section-ttl"><%= @menus.name %></h2>
 		<%= render 'layouts/error_messages', resource: @cart_item %>
 		<div class="flex">
-			<%= image_tag @menues.get_image, class: "item_image" %>
+			<%= image_tag @menus.get_image, class: "item_image" %>
 			<div class="item_info">
-				<h4><%= @menues.introduction %></h4>
-				<p>ジャンル: <%= link_to @menues.genre.name, items_path(genre_id: @menues.genre_id) %></p>
+				<h4><%= @menus.introduction %></h4>
+				<p>ジャンル: <%= link_to @menus.genre.name, items_path(genre_id: @menus.genre_id) %></p>
 				<p>
-					¥<%= @menues.with_tax_price %>(税込)
-					<% if @menues.is_active? %>
+					¥<%= @menus.with_tax_price %>(税込)
+					<% if @menus.is_active? %>
 					<span class="text-active">販売中</span>
 					<% else %>
 					<span class="text-invalid">販売停止中</span>
 					<% end %>
 				</p><br>
 				<% if customer_signed_in? %>
-					<% cart_item = current_customer.has_in_cart(@menues) %>
+					<% cart_item = current_customer.has_in_cart(@menus) %>
 					<% if cart_item %>
-						<%= form_with model: [@menues, cart_item] do |f| %>
+						<%= form_with model: [@menus, cart_item] do |f| %>
 							<p>こちらの商品は、既にカートに入っています。</p>
 							<%= f.select :amount, [*(1..10)] %>
 							<%= f.submit "数量変更", class: "btn btn-primary" %>
 						<% end %>
-					<% elsif @menues.is_active? %>
-						<%= form_with model: [@menues, @cart_item] do |f| %>
+					<% elsif @menus.is_active? %>
+						<%= form_with model: [@menus, @cart_item] do |f| %>
 							<p>数量を選択して下さい。</p>
 							<%= f.select :amount, [*(1..10)], {selected: 1} %>
 							<%= f.submit "カートに入れる", class: "btn btn-primary" %>

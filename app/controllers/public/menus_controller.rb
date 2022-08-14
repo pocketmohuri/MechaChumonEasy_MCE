@@ -1,16 +1,16 @@
-class Public::MenuesController < ApplicationController
+class Public::MenusController < ApplicationController
 
    def index
     @genres = Genre.where(is_active: true)
     if params[:genres_id]
       @genre = @genres.find(params[:genres_id])
-      all_menues = @genre.items
+      all_menus = @genre.items
     else
-      all_menues = Menu.where(genres_id: @genres.ids).includes(:genres)
+      all_menus = Menu.where(genres_id: @genres.ids).includes(:genres)
     end
-    @menues = all_menues#.page(params[:page]).per(12)
+    @menus = all_menus#.page(params[:page]).per(12)
     #kaminariを導入したらコメントアウト解除
-    @all_menues_count = all_menues.count
+    @all_menus_count = all_menus.count
    end
 
   def show

@@ -1,0 +1,4 @@
+<section class="inner">
+	<h2 class="section-ttl"><%= @menu.menu_name %>の編集</h2>
+  <%= render 'form', menu: @menu, url: admin_menu_path(@menu), submit: '更新' %>
+</section>

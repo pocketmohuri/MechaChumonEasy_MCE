@@ -21,10 +21,10 @@
 						<td>
 							<%#= image_tag item.get_image, class: "cart_item_image" %>
 						</td>
-						<td><%= link_to menues.name, menues_path(menues) %></td>
-						<td class="text-right"><%= menues.with_tax_price %>円</td>
+						<td><%= link_to menus.name, menu_path(menus) %></td>
+						<td class="text-right"><%= menus.with_tax_price %>円</td>
 						<td>
-							<%= form_with model: [menue, cart_item] do |f| %>
+							<%= form_with model: [menu, cart_item] do |f| %>
 								<%= f.select :amount, [*(1..10)], {include_blank: false}, id: "cart_item_amount_#{cart_item.id}" %>
 								<%= f.submit "変更", class: "btn btn-primary", id: "submit_for_cart_item_#{cart_item.id}" %>
 							<% end %>
@@ -51,7 +51,7 @@
 	<% else %>
 		<h3 class="text-center mb3 fz24">カート内に商品がありません。</h3>
 		<div class="text-center">
-			<%= link_to "商品一覧を見る", menues_path, class: "btn btn-primary" %>
+			<%= link_to "商品一覧を見る", menus_path, class: "btn btn-primary" %>
 		</div>
 	<% end %>
 </section>

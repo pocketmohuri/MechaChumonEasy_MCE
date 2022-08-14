@@ -1,7 +1,7 @@
 <section class="inner">
   <h2 class="section-ttl">新規会員登録</h2>
 
-   <%= form_with model: @admin, url: new_admin_registration_path(Admin.new), local: true do |f| %>
+   <%= form_with model: @admin, url: admin_registration_path(Admin.new), local: true do |f| %>
     <%#= render 'layouts/error_messages', resource: @admin %>
     <%#=　エラーメッセージが作成出来たらコメントアウト解除　%>
     <table class="customer_info customer_form">
