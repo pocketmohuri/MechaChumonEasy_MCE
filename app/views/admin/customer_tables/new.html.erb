@@ -1,0 +1,6 @@
+<h2>テーブル番号作成画面</h2>
+<%= form_with model: @customer_table, url: admin_customer_tables_path, method: :post do |f| %>
+  <%= f.label :customer_tables_name, 'テーブル名' %>
+  <%= f.text_field :customer_tables_name %>
+  <%= f.submit %>
+<% end %>

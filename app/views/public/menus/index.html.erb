@@ -3,21 +3,21 @@
 	<div class="sidebar">
 		<h3>ジャンル一覧</h3>
 		<% @genres.each do |genre| %>
-			<%= link_to genre.name, items_path(genre_id: genre.id) %>
+			<%= link_to genre.genres_name, menus_path(genre_id: genre.id) %>
 		<% end %>
 	</div>
 
 <div class="content">
 		<% if params[:genre_id] %>
-			<h2 class="section-ttl"><%= @genre.name %>の商品一覧 (全<%= @all_menus_count %>件)</h2>
+			<h2 class="section-ttl"><%= @genre.menu_name %>の商品一覧 (全<%= @all_menus_count %>件)</h2>
 		<% else %>
 			<h2 class="section-ttl">商品一覧 (全<%= @all_menus_count %>件)</h2>
 		<% end %>
 		<% if @menus.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
 			<div class="menus">
-				<% @menus.each do |menus| %>
-					<%= link_to item_path(item) do %>
-						<%= image_tag item.get_image, format: "jpeg", fallback: "no-image.png" %>
+				<% @menus.each do |menu| %>
+					<%= link_to menu_path(menu) do %>
+						<%#= image_tag menus.get_image, format: "jpeg", fallback: "no-image.png" %>
 						<h5><%= item.genre.name %></h5>
 						<p><%= item.name %></p>
 						<p>

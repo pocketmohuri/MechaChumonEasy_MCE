@@ -12,7 +12,7 @@
 		<% menus.each do |menu| %>
 			<tr>
 				<td class="text-center"><%= menu.id %></td>
-				<td><%= link_to menu.menu_name, admin_menus_path(menu), class: "underline" %></td>
+				<td><%= link_to menu.menu_name, admin_menu_path(menu.id), class: "underline" %></td>
 				<td class="text-center"><%= menu.price %>円</td>
 				<td><% if menu.genre != nil %><%= link_to menu.genre.genres_name, admin_menus_path(genre_id: menu.genre_id) %><% end %></td>
 				<td>

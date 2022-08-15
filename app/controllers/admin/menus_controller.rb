@@ -30,7 +30,7 @@ class Admin::MenusController < ApplicationController
   end
 
   def update
-    @menu.update(menu_params) ? (redirect_to admin_menue_path(@menu)) : (render :edit)
+    @menu.update(menu_params) ? (redirect_to admin_menu_path(@menu)) : (render :edit)
   end
 
   private

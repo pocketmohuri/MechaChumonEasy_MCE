@@ -1,7 +1,7 @@
 <%= form_with model:genre, url: url do |f| %>
-	<%= render 'layouts/error_messages', resource: genre %>
-	<%= f.label :name, "ジャンル名:" %>
-	<%= f.text_field :name %>
+	<%#= render 'layouts/error_messages', resource: genre %>
+	<%= f.label :gemres_name, "ジャンル名:" %>
+	<%= f.text_field :genres_name %>
 	<%= f.radio_button :is_active, true %>
 	<%= f.label :is_active, "有効", class: "text-active" %>
 	<%= f.radio_button :is_active, false %>

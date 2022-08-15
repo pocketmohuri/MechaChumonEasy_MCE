@@ -11,7 +11,7 @@ class Public::OrdersController < ApplicationController
     if params[:select_address] == '0'
       @order.get_shipping_informations_from(current_customer_table)
     elsif params[:select_address] == '1'
-      @selected_address = current_customer.addresses.find(params[:address_id])
+      @selected_address = customer_tables_name.addresses.find(params[:address_id])
       @order.get_shipping_informations_from(@selected_address)
     elsif params[:select_address] == '2' && (@order.postal_code =~ /\A\d{7}\z/) && @order.destination? && @order.name?
       # 処理なし
@@ -25,11 +25,11 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    @order = current_customer.orders.new(order_params)
+    @order = customer_tables_name.orders.new(order_params)
     @order.shipping_cost = 800
     @order.grand_total = @order.shipping_cost + @cart_items.sum(&:subtotal)
     if @order.save
-      @order.create_order_details(current_customer)
+      @order.create_order_details(customer_tables_name)
       redirect_to thanks_path
     else
       render :new
@@ -51,11 +51,11 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:postal_code, :destination, :name, :payment_method)
+    params.require(:order).permit(:total_payment, :menu_name)
   end
 
   def ensure_cart_items
-    @cart_items = current_customer.cart_items.includes(:item)
-    redirect_to items_path unless @cart_items.first
+    @cart_items = current_customer.cart_items.includes(:menu)
+    redirect_to menus_path unless @cart_items.first
   end
 end

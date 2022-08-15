@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     resources :orders, only:[:new, :create, :index, :show]
     post 'orders/confirm' => 'orders#confirm', as: 'confirm_orders'
     get 'orders/complete' => 'orders#complete', as: 'complete_orders'
-    resources :tables, only:[:new, :show]
+    resources :customer_tables, only:[:new, :show]
     #tablesがながのケーキでいうcustomerテーブル。
   end
 
@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     resources :users, only:[:new, :index, :create, :show, :edit, :update]
     resources :orders, only:[:index, :show, :update]
     resources :order_details, only:[:update]
+    resources :customer_tables, only:[:index, :edit, :update, :new, :create]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
