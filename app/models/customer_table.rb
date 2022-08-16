@@ -4,10 +4,15 @@ class CustomerTable < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :menus
+
   has_many :cart_items
+  has_many :orders
 
   validates :email, uniqueness: true
   validates :customer_tables_name, uniqueness: true
+
+  def has_in_cart(menu)
+    cart_items.find_by(menu_id: menu.id)
+  end
 
 end

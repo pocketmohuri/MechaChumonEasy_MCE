@@ -7,31 +7,32 @@
 	</div>
 
 <div class="content">
-		<h2 class="section-ttl"><%= @menus.name %></h2>
-		<%= render 'layouts/error_messages', resource: @cart_item %>
+		<h2 class="section-ttl"><%= @menu.menu_name %></h2>
+		<%#= render 'layouts/error_messages', resource: @cart_item %>
+		<!--エラーメッセージのテンプレートを完成させたのちにコメントアウトしよう-->
 		<div class="flex">
-			<%= image_tag @menus.get_image, class: "item_image" %>
-			<div class="item_info">
-				<h4><%= @menus.introduction %></h4>
-				<p>ジャンル: <%= link_to @menus.genre.name, menus_path(genre_id: @menus.genre_id) %></p>
+			<%#= image_tag @menu.get_image, class: "menu_image" %>
+			<!--写真を入手したらコメントアウト外す。menu.rbでget_imageを定義する-->
+			<div class="menu_info">
+				<h4><%= @menu.introduction %></h4>
+				<p>ジャンル: <%= link_to @menu.genre.genres_name, menus_path(genre_id: @menu.genre_id) %></p>
 				<p>
-					¥<%= @menus.with_tax_price %>(税込)
-					<% if @menus.is_active? %>
+					¥<%= @menu.price %>(金額)
+					<% if @menu.is_active? %>
 					<span class="text-active">販売中</span>
 					<% else %>
 					<span class="text-invalid">販売停止中</span>
 					<% end %>
 				</p><br>
-				<% if customer_signed_in? %>
-					<% cart_item = current_customer_tables_name.has_in_cart(@menus) %>
+					<% cart_item = current_customer_table.has_in_cart(@menu) %>
 					<% if cart_item %>
-						<%= form_with model: [@menus, cart_item] do |f| %>
+						<%= form_with model: [@menu, cart_item] do |f| %>
 							<p>こちらの商品は、既にカートに入っています。</p>
 							<%= f.select :amount, [*(1..10)] %>
 							<%= f.submit "数量変更", class: "btn btn-primary" %>
 						<% end %>
-					<% elsif @menus.is_active? %>
-						<%= form_with model: [@menus, @cart_item] do |f| %>
+					<% elsif @menu.is_active? %>
+          <%= form_with model: [@menu, @cart_item] do |f| %>
 							<p>数量を選択して下さい。</p>
 							<%= f.select :amount, [*(1..10)], {selected: 1} %>
 							<%= f.submit "カートに入れる", class: "btn btn-primary" %>
@@ -39,9 +40,6 @@
 					<% else %>
 						<p class="bold">こちらの商品は、現在販売停止中です。</p>
 					<% end %>
-				<% else %>
-					<p>カート機能をご利用いただくには、<br><%= link_to "こちら", new_customer_registration_path, class: "underline" %>から新規登録を行なってください。</p>
-				<% end %>
 			</div>
 		</div>
 	</div>

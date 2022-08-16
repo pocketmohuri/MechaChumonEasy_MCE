@@ -29,6 +29,7 @@
             <!--<li><%#= link_to '注文履歴一覧', orders_path %></li>-->
             <li><%= link_to 'カート', cart_items_path %></li>
             <li><%= link_to 'ログアウト', destroy_customer_table_session_path, method: :delete %></li>
+            <!--ログイン前は両者ともに表示なしでOK!-->
 
             <%# if admin_signed_in? %>
               <%#= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
@@ -41,6 +42,7 @@
             <%# else %>
               <%#= link_to 'ログイン', new_customer_table_session_path %>
             <%# end %>
+            <!--ログインログアウトで表示が変化するかの実験用。テストデプロイ後に消去する-->
 
 
 
@@ -54,6 +56,7 @@
             <%#= submit_tag '検索', class: "btn btn-primary" %>
           <%# end %>
         <%# end %>
+        <!--検索機能。時間があったら実装する。-->
 
       </div>
     </header>

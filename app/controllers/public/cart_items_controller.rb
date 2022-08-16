@@ -13,7 +13,7 @@ class Public::CartItemsController < ApplicationController
       redirect_to cart_items_path
     else
       @cart_item = current_customer_table.cart_items.new(cart_item_params)
-      @cart_item.menus_id = @item.id
+      @cart_item.menus_id = @menu.id
       if @cart_item.save
         redirect_to cart_items_path
       else
@@ -46,6 +46,6 @@ class Public::CartItemsController < ApplicationController
 
   def set_cart_item
     @menues = Menu.find(params[:menu_id])
-    @cart_item = current_customer_table.has_in_cart(@item)
+    @cart_item = current_customer_table.has_in_cart(@menu)
   end
 end
