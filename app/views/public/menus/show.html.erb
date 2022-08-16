@@ -2,7 +2,7 @@
 	<div class="sidebar">
 		<h3>ジャンル一覧</h3>
 		<% @genres.each do |genre| %>
-		<%= link_to genre.name, items_path(genre_id: genre.id) %>
+		<%= link_to genre.genres_name, menus_path(genre_id: genre.id) %>
 		<% end %>
 	</div>
 
@@ -13,7 +13,7 @@
 			<%= image_tag @menus.get_image, class: "item_image" %>
 			<div class="item_info">
 				<h4><%= @menus.introduction %></h4>
-				<p>ジャンル: <%= link_to @menus.genre.name, items_path(genre_id: @menus.genre_id) %></p>
+				<p>ジャンル: <%= link_to @menus.genre.name, menus_path(genre_id: @menus.genre_id) %></p>
 				<p>
 					¥<%= @menus.with_tax_price %>(税込)
 					<% if @menus.is_active? %>
@@ -23,7 +23,7 @@
 					<% end %>
 				</p><br>
 				<% if customer_signed_in? %>
-					<% cart_item = current_customer.has_in_cart(@menus) %>
+					<% cart_item = current_customer_tables_name.has_in_cart(@menus) %>
 					<% if cart_item %>
 						<%= form_with model: [@menus, cart_item] do |f| %>
 							<p>こちらの商品は、既にカートに入っています。</p>

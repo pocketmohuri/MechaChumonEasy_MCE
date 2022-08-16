@@ -18,7 +18,6 @@ Rails.application.routes.draw do
 
 #mydomain.com/menues
   scope module: :public do
-    root 'homes#top'
     get 'about' => 'homes#about', as: 'about'
     resources :menus, only:[:index, :show]
     resources :cart_items, only:[:new, :index, :create, :update, :destroy]
@@ -40,6 +39,12 @@ Rails.application.routes.draw do
     resources :order_details, only:[:update]
     resources :customer_tables, only:[:index, :edit, :update, :new, :create]
   end
+  
+  devise_scope :customer_table do
+    root to: 'public/sessions#new'
+  end
+  
+  
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

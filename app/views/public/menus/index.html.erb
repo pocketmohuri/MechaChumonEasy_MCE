@@ -9,7 +9,7 @@
 
 <div class="content">
 		<% if params[:genre_id] %>
-			<h2 class="section-ttl"><%= @genre.menu_name %>の商品一覧 (全<%= @all_menus_count %>件)</h2>
+			<h2 class="section-ttl"><%= @genre.genres_name %>の商品一覧 (全<%= @all_menus_count %>件)</h2>
 		<% else %>
 			<h2 class="section-ttl">商品一覧 (全<%= @all_menus_count %>件)</h2>
 		<% end %>
@@ -18,11 +18,11 @@
 				<% @menus.each do |menu| %>
 					<%= link_to menu_path(menu) do %>
 						<%#= image_tag menus.get_image, format: "jpeg", fallback: "no-image.png" %>
-						<h5><%= item.genre.name %></h5>
-						<p><%= item.name %></p>
+						<h5><%= menu.genre.genres_name %></h5>
+						<p><%= menu.menu_name %></p>
 						<p>
-							<%= item.with_tax_price %>円
-							<% if item.is_active? %>
+							<%= menu.price %>円
+							<% if menu.is_active? %>
 								<span class="text-active">販売中</span>
 							<% else %>
 								<span class="text-invalid">販売停止中</span>
