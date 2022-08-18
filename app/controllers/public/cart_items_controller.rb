@@ -41,11 +41,11 @@ class Public::CartItemsController < ApplicationController
   private
 
   def cart_item_params
-    params.require(:cart_items).permit(:amount)
+    params.require(:cart_item).permit(:amount)
   end
 
   def set_cart_item
-    @menues = Menu.find(params[:menu_id])
+    @menu = Menu.find(params[:menu_id])
     @cart_item = current_customer_table.has_in_cart(@menu)
   end
 end

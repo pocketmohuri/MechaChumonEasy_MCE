@@ -6,11 +6,46 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+<body>
+    <header class="mb-5">
+        <ul class="nav justify-content-end">
+        <% if admin_signed_in? %>
+        <li class="nav-item">
+          <%= link_to '商品一覧',  admin_menus_path, class: "nav-link active" %>
+        </li>
+        <li class="nav-item">
+           <%= link_to '注文履歴一覧',  admin_orders_path, class: "nav-link active" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'ジャンル一覧',  admin_genres_path, class: "nav-link active" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'テーブル番号一覧',   admin_customer_tables_path, class: "nav-link active" %>
+        </li>
+        <li class="nav-item">
+          <%= button_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link active" %>
+        </li>
+        <% elsif customer_table_signed_in? %>
+        <p>ようこそ、<%= current_customer_table.customer_tables_name %>さん!</p>
+        <li class="nav-item">
+            <%= link_to '商品一覧', menus_path, class: "nav-link active" %>
+          </li>
+        <li class="nav-item">
+            <%= link_to 'カート', cart_items_path, class: "nav-link active" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to '注文履歴一覧', orders_path, class: "nav-link active" %>
+        </li>
+        <li class="nav-item">
+            <%= button_to 'ログアウト', destroy_customer_table_session_path, method: :delete, class: "nav-link active" %>
+        </li>
+        <% end %>
+      </ul>
+    </header>
      <header class="<%= (admin_signed_in? ? "admin_header" : "" ) %>">
       <div class="header-content">
       <%= link_to 'MechaChumonEasy', (admin_signed_in? ? admin_menus_path : root_path ), class: "logo" %>
@@ -21,14 +56,14 @@
             <li><%= link_to '注文履歴一覧',  admin_orders_path %></li>
             <li><%= link_to 'ジャンル一覧',  admin_genres_path %></li>
             <li><%= link_to 'テーブル番号一覧',   admin_customer_tables_path %></li>
-            <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+            <li><%= button_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
           <% elsif customer_table_signed_in? %>
           <%# binding.pry %>
             <p>ようこそ、<%= current_customer_table.customer_tables_name %>さん!</p>
             <li><%= link_to '商品一覧', menus_path %></li>
-            <!--<li><%#= link_to '注文履歴一覧', orders_path %></li>-->
+            <li><%= link_to '注文履歴一覧', orders_path %></li>
             <li><%= link_to 'カート', cart_items_path %></li>
-            <li><%= link_to 'ログアウト', destroy_customer_table_session_path, method: :delete %></li>
+            <li><%= button_to 'ログアウト', destroy_customer_table_session_path, method: :delete %></li>
             <!--ログイン前は両者ともに表示なしでOK!-->
 
             <%# if admin_signed_in? %>
@@ -63,3 +98,4 @@
     <%= yield %>
   </body>
 </html>
+

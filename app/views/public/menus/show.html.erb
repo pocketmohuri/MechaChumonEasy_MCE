@@ -26,15 +26,16 @@
 				</p><br>
 					<% cart_item = current_customer_table.has_in_cart(@menu) %>
 					<% if cart_item %>
-						<%= form_with model: [@menu, cart_item] do |f| %>
+						<%= form_with url: cart_items_path, model: [@menu, cart_item] do  |f| %>
 							<p>こちらの商品は、既にカートに入っています。</p>
 							<%= f.select :amount, [*(1..10)] %>
 							<%= f.submit "数量変更", class: "btn btn-primary" %>
 						<% end %>
 					<% elsif @menu.is_active? %>
-          <%= form_with model: [@menu, @cart_item] do |f| %>
+          <%= form_with url: cart_items_path, model: [@menu, @cart_item] do |f| %>
 							<p>数量を選択して下さい。</p>
 							<%= f.select :amount, [*(1..10)], {selected: 1} %>
+							<%= f.hidden_field :menu_id, value: 1 %>
 							<%= f.submit "カートに入れる", class: "btn btn-primary" %>
 						<% end %>
 					<% else %>
