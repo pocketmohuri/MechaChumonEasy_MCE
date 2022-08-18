@@ -1,49 +1,46 @@
-<section class="inner">
-	<h2 class="section-ttl">商品詳細</h2>
-	<div class="flex">
-		<div>
-			<div class="image_field">
-				<%#= image_tag @item.get_image, id: "img_prev", class: "admin_item_image" %>
+<div class='container'>
+	<h2>商品詳細</h2>
+		<div class='row'>
+
+			<div class="col-xl-5">
+					<%#= image_tag @menu.get_image, id: "img_prev", class: "admin_item_image" %>
 			</div>
+
+        <div class="col-xl-7">
+        	<div align="center">
+	          <table>
+								<tr>
+									<th><h4>商品名</h4></th>
+									<th><%= @menu.menu_name %></th>
+								</tr>
+								<tr>
+									<th><h4>商品説明</h4></th>
+									<th><%= @menu.introduction %></th>
+								</tr>
+								<tr>
+									<th><h4>ジャンル</h4></th>
+									<th><%= link_to @menu.genre.genres_name, admin_genres_path, class: "underline" %></th>
+								</tr>
+								<tr>
+									<th><h4>税抜価格</h4></th>
+									<th><%= @menu.price %>円</th>
+								</tr>
+								<tr>
+									<th><h4>販売ステータス</h4></th>
+									<th>
+										<% if @menu.is_active? %>
+											<span class="text-active">販売中</span>
+										<% else %>
+											<span class="text-invalid">販売停止中</span>
+										<% end %>
+									</th>
+								</tr>
+						</table><br>
+							<div class="flex align-center pl5">
+					     <%= link_to "編集する", edit_admin_menu_path(@menu), class: "btn btn-success" %>
+			      	</div>
+					</div>
+        </div>
+
 		</div>
-		<table class="admin_menu_info">
-			<thead>
-				<tr>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>商品名</td>
-					<td><%= @menu.menu_name %></td>
-				</tr>
-				<tr>
-					<td>商品説明</td>
-					<td><%= @menu.introduction %></td>
-				</tr>
-				<tr>
-					<td>ジャンル</td>
-					<td><%= link_to @menu.genre.genres_name, admin_genres_path, class: "underline" %></td>
-				</tr>
-				<tr>
-					<td>税抜価格</td>
-					<td><%= @menu.price %>円</td>
-				</tr>
-				<tr>
-					<td>販売ステータス</td>
-					<td>
-						<% if @menu.is_active? %>
-							<span class="text-active">販売中</span>
-						<% else %>
-							<span class="text-invalid">販売停止中</span>
-						<% end %>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<div class="flex align-center pl5">
-			<%= link_to "編集する", edit_admin_menu_path(@menu), class: "btn btn-success" %>
-		</div>
-	</div>
-</section>
+</div>

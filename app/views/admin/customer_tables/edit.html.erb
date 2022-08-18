@@ -1,7 +1,10 @@
-<h2>テーブル番号編集画面</h2>
-
-<%= form_with model: @customer_table, url: admin_customer_table_path(@customer_table), method: :patch do |f| %>
-  <%= f.label :customer_tables_name, 'テーブル名' %>
-  <%= f.text_field :customer_tables_name %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <h2>テーブル番号編集画面</h2>
+    <div class="row,margin-top: 40px">
+      <%= form_with model: @customer_table, url: admin_customer_table_path(@customer_table), method: :patch do |f| %>
+        <%= f.label :customer_tables_name, 'テーブル名' %>
+        <%= f.text_field :customer_tables_name %>
+        <%= f.submit "新規登録", class: "btn btn-success" %>
+      <% end %>
+    </div>
+</div>

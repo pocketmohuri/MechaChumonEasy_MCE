@@ -1,47 +1,53 @@
-<section class="wrapper flex">
-	<div class="sidebar">
-		<h3>ジャンル一覧</h3>
-		<% @genres.each do |genre| %>
-		<%= link_to genre.genres_name, menus_path(genre_id: genre.id) %>
-		<% end %>
-	</div>
-
-<div class="content">
-		<h2 class="section-ttl"><%= @menu.menu_name %></h2>
-		<%#= render 'layouts/error_messages', resource: @cart_item %>
-		<!--エラーメッセージのテンプレートを完成させたのちにコメントアウトしよう-->
-		<div class="flex">
-			<%#= image_tag @menu.get_image, class: "menu_image" %>
-			<!--写真を入手したらコメントアウト外す。menu.rbでget_imageを定義する-->
-			<div class="menu_info">
-				<h4><%= @menu.introduction %></h4>
-				<p>ジャンル: <%= link_to @menu.genre.genres_name, menus_path(genre_id: @menu.genre_id) %></p>
-				<p>
-					¥<%= @menu.price %>(金額)
-					<% if @menu.is_active? %>
-					<span class="text-active">販売中</span>
-					<% else %>
-					<span class="text-invalid">販売停止中</span>
-					<% end %>
-				</p><br>
-					<% cart_item = current_customer_table.has_in_cart(@menu) %>
-					<% if cart_item %>
-						<%= form_with url: cart_items_path, model: [@menu, cart_item] do  |f| %>
-							<p>こちらの商品は、既にカートに入っています。</p>
-							<%= f.select :amount, [*(1..10)] %>
-							<%= f.submit "数量変更", class: "btn btn-primary" %>
-						<% end %>
-					<% elsif @menu.is_active? %>
-          <%= form_with url: cart_items_path, model: [@menu, @cart_item] do |f| %>
-							<p>数量を選択して下さい。</p>
-							<%= f.select :amount, [*(1..10)], {selected: 1} %>
-							<%= f.hidden_field :menu_id, value: 1 %>
-							<%= f.submit "カートに入れる", class: "btn btn-primary" %>
-						<% end %>
-					<% else %>
-						<p class="bold">こちらの商品は、現在販売停止中です。</p>
-					<% end %>
-			</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2">
+			<h3>ジャンル一覧</h3>
+			<% @genres.each do |genre| %>
+			<%= link_to genre.genres_name, menus_path(genre_id: genre.id) %>
+			<% end %>
 		</div>
+
+	<div class="col-md-10">
+			<h2 class="section-ttl"><%= @menu.menu_name %></h2>
+			<%#= render 'layouts/error_messages', resource: @cart_item %>
+			<!--エラーメッセージのテンプレートを完成させたのちにコメントアウトしよう-->
+
+			<div class="col-xl-6">
+				<%#= image_tag @menu.get_image, class: "menu_image" %>
+				<!--写真を入手したらコメントアウト外す。menu.rbでget_imageを定義する-->
+			</div>
+
+			<div class="col-xl-6">
+					<h4><%= @menu.introduction %></h4>
+					<p>ジャンル: <%= link_to @menu.genre.genres_name, menus_path(genre_id: @menu.genre_id) %></p>
+					<p>
+						¥<%= @menu.price %>(金額)
+						<% if @menu.is_active? %>
+						<span class="text-active">販売中</span>
+						<% else %>
+						<span class="text-invalid">販売停止中</span>
+						<% end %>
+					</p><br>
+						<% cart_item = current_customer_table.has_in_cart(@menu) %>
+						<% if cart_item %>
+							<%= form_with url: cart_items_path, model: [@menu, cart_item] do  |f| %>
+								<p>こちらの商品は、既にカートに入っています。</p>
+								<%= f.select :amount, [*(1..10)] %>
+								<%= f.submit "数量変更", class: "btn btn-primary" %>
+							<% end %>
+						<% elsif @menu.is_active? %>
+	          <%= form_with url: cart_items_path, model: [@menu, @cart_item] do |f| %>
+								<p>数量を選択して下さい。</p>
+								<%= f.select :amount, [*(1..10)], {selected: 1} %>
+								<%= f.hidden_field :menu_id, value: @menu.id %>
+								<%= f.submit "カートに入れる", class: "btn btn-primary" %>
+							<% end %>
+						<% else %>
+							<p class="bold">こちらの商品は、現在販売停止中です。</p>
+						<% end %>
+				</div>
+
+		</div>
+
 	</div>
-</section>
+</div>

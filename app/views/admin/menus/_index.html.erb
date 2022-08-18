@@ -1,28 +1,33 @@
-<table class="admin_items has_border">
-	<thead>
-		<tr>
-			<th>商品ID</th>
-			<th>商品名</th>
-			<th>税抜価格</th>
-			<th>ジャンル</th>
-			<th>販売ステータス</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% menus.each do |menu| %>
+<div class='container'>
+	<table class="table table-hover">
+		<h3 class="text-right">
+				<h4><%= link_to "商品登録", new_admin_menu_path, class: "underline" %><h4>
+		</h3>
+		<thead>
 			<tr>
-				<td class="text-center"><%= menu.id %></td>
-				<td><%= link_to menu.menu_name, admin_menu_path(menu.id), class: "underline" %></td>
-				<td class="text-center"><%= menu.price %>円</td>
-				<td><% if menu.genre != nil %><%= link_to menu.genre.genres_name, admin_menus_path(genre_id: menu.genre_id) %><% end %></td>
-				<td>
-					<% if menu.is_active? %>
-						<span class="text-active">販売中</span>
-					<% else %>
-						<span class="text-invalid">販売停止中</span>
-					<% end %>
-				</td>
+				<th>商品ID</th>
+				<th>商品名</th>
+				<th>価格</th>
+				<th>ジャンル</th>
+				<th>販売ステータス</th>
 			</tr>
-		<% end %>
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			<% menus.each do |menu| %>
+				<tr>
+					<td class="text-center"><%= menu.id %></td>
+					<td><%= link_to menu.menu_name, admin_menu_path(menu.id), class: "underline" %></td>
+					<td class="text-center"><%= menu.price %>円</td>
+					<td><% if menu.genre != nil %><%= link_to menu.genre.genres_name, admin_menus_path(genre_id: menu.genre_id) %><% end %></td>
+					<td>
+						<% if menu.is_active? %>
+							<span class="text-active">販売中</span>
+						<% else %>
+							<span class="text-invalid">販売停止中</span>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

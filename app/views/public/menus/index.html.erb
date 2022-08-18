@@ -1,39 +1,46 @@
-<section class="wrapper flex">
+<div class='container-fluid'>
+	<div class='row'>
 
-	<div class="sidebar">
-		<h3>ジャンル一覧</h3>
-		<% @genres.each do |genre| %>
-			<%= link_to genre.genres_name, menus_path(genre_id: genre.id) %>
-		<% end %>
-	</div>
+		<div class='col-md-2'>
+			<h3>ジャンル一覧</h3>
+			<% @genres.each do |genre| %>
+			  <div class='ml-5 mb-3'>
+				<%= link_to genre.genres_name, menus_path(genre_id: genre.id) %></br>
+			  </div>
+			<% end %>
+		</div>
 
-<div class="content">
-		<% if params[:genre_id] %>
-			<h2 class="section-ttl"><%= @genre.genres_name %>の商品一覧 (全<%= @all_menus_count %>件)</h2>
-		<% else %>
-			<h2 class="section-ttl">商品一覧 (全<%= @all_menus_count %>件)</h2>
-		<% end %>
-		<% if @menus.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
-			<div class="menus">
-				<% @menus.each do |menu| %>
-					<%= link_to menu_path(menu) do %>
-						<%#= image_tag menus.get_image, format: "jpeg", fallback: "no-image.png" %>
-						<h5><%= menu.genre.genres_name %></h5>
-						<p><%= menu.menu_name %></p>
-						<p>
-							<%= menu.price %>円
-							<% if menu.is_active? %>
-								<span class="text-active">販売中</span>
-							<% else %>
-								<span class="text-invalid">販売停止中</span>
-							<% end %>
-						</p>
+	  <div class="col-md-10">
+			<% if params[:genre_id] %>
+				<h2 class="section-ttl"><%= @genre.genres_name %>の商品一覧 (全<%= @all_menus_count %>件)</h2>
+			<% else %>
+				<h2 class="section-ttl">商品一覧 (全<%= @all_menus_count %>件)</h2>
+			<% end %>
+			<% if @menus.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
+				<div class="row ml-4">
+					<% @menus.each do |menu| %>
+					  <div class="col-md-4">
+						<%= link_to menu_path(menu) do %>
+							<%#= image_tag menus.get_image, format: "jpeg", fallback: "no-image.png" %>
+							<h5><%= menu.genre.genres_name %></h5>
+							<p><%= menu.menu_name %></p>
+							<p>
+								<%= menu.price %>円
+								<% if menu.is_active? %>
+									<span class="text-active">販売中</span>
+								<% else %>
+									<span class="text-invalid">販売停止中</span>
+								<% end %>
+							</p>
+						<% end %>
+					  </div>
 					<% end %>
-				<% end %>
-			</div>
-			<%= paginate @menus %>
-		<% else %>
-			<h3>対応する商品はありませんでした。</h3>
-		<% end %>
-	</div>
-	</section>
+				</div>
+				<%= paginate @menus %>
+			<% else %>
+				<h3>対応する商品はありませんでした。</h3>
+			<% end %>
+		</div>
+
+  </div>
+</div>

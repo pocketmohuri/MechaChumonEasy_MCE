@@ -1,41 +1,55 @@
-<section class="inner">
-  <h2 class="section-ttl">新規会員登録</h2>
+<div class="container">
+   <div class="row">
+    <div class = "col-lg-4 offset-lg-1 mb-3">
+     <h2 class="section-ttl">新規会員登録</h2>
+    </div>
+   </div>
 
-   <%= form_with model: @admin, url: admin_registration_path(Admin.new), local: true do |f| %>
-    <%#= render 'layouts/error_messages', resource: @admin %>
-    <%#=　エラーメッセージが作成出来たらコメントアウト解除　%>
-    <table class="customer_info customer_form">
-      <thead>
-        <th></th>
-        <th></th>
-        <th></th>
-      </thead>
-      <tbody>
-        <tr>
-          <td>名前</td>
-          <td><%= f.label :first_name, "(姓)", class: "admin_name" %> <%= f.text_field :first_name, autofocus: true, :placeholder =>"難波" %></td>
-          <td><%= f.label :last_name, "(名)", class: "admin_name" %> <%= f.text_field :last_name, :placeholder =>"太郎" %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :email, "メールアドレス" %></td>
-          <td colspan="2"><%= f.email_field :email, autocomplete: "email" %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)" %></td>
-          <td colspan="2"><%= f.password_field :password, autocomplete: "new-password" %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :password_confirmation, "パスワード(確認用)" %></td>
-          <td colspan="2"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td colspan="2"><%= f.submit "新規登録", class: "btn btn-success" %></td>
-        </tr>
-      </tbody>
+ <%= form_with model: @admin, url: admin_registration_path(Admin.new), local: true do |f| %>
+      <%#= render 'layouts/error_messages', resource: @admin %>
+      <%#=　エラーメッセージが作成出来たらコメントアウト解除　%>
+  <div class = "row">
+   <div class = "col-lg-10 mb-4">
+    <table class = "table table-borderless">
+
+        <tbody>
+          <tr>
+            <td>名前</td>
+            <td><%= f.label :first_name, "(姓)", class: "admin_name" %> <%= f.text_field :first_name, autofocus: true, :placeholder =>"難波" %></td>
+            <td><%= f.label :last_name, "(名)", class: "admin_name" %> <%= f.text_field :last_name, :placeholder =>"太郎" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :email, "メールアドレス" %></td>
+            <td colspan="2"><%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com", class: "form-control col-sm-7"%></td>
+          </tr>
+          <tr>
+            <td><%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)" %></td>
+            <td colspan="2"><%= f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "form-control col-sm-7 mb-3" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :password_confirmation, "パスワード(確認用)" %></td>
+            <td colspan="2"><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上", class: "form-control col-sm-7 mb-3" %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td colspan="2"><%= f.submit "新規登録", class: "btn btn-success" %></td>
+          </tr>
+        </tbody>
     </table>
+   </div>
+  </div>
   <% end %>
 
-  <h2 class="section-ttl">既に登録済みの方</h2>
-  <p><%= link_to "こちら", new_admin_session_path, class: "underline" %>からログインしてください。</p>
-</section>
+  <div class="row">
+   <div class="col-lg-5 offset-lg-1 mb-4">
+    <h2>既に登録済みの方</h2>
+   </div>
+  </div>
+
+  <div class = "row">
+   <div class = "col-lg-8 mx-auto">
+    <h4> <%= link_to "こちら", new_admin_session_path, class: "underline" %>からログインしてください。<h4>
+   </div>
+  </div>
+
+</div>

@@ -1,4 +1,6 @@
-<section class="inner">
-	<h2 class="section-ttl">ジャンル新規登録</h2>
-  <%= render 'form', genre: @genre, url: admin_genre_path(@genre), submit: '更新' %>
-</section>
+<div class="container">
+	<h2 class="section-ttl">ジャンル編集画面</h2>
+  	<div class="form-group">
+      <%= render 'form', genre: @genre, url: admin_genre_path(@genre), submit: '更新' %>
+    </div>
+</div>

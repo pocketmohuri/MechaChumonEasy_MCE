@@ -11,7 +11,8 @@
   </head>
 
 <body>
-    <header class="mb-5">
+  <%= link_to 'MechaChumonEasy', (admin_signed_in? ? admin_menus_path : root_path ), class: "logo" %>
+    <header class="mb-5" style="margin-right: 40px; "　>
         <ul class="nav justify-content-end">
         <% if admin_signed_in? %>
         <li class="nav-item">
@@ -46,42 +47,7 @@
         <% end %>
       </ul>
     </header>
-     <header class="<%= (admin_signed_in? ? "admin_header" : "" ) %>">
-      <div class="header-content">
-      <%= link_to 'MechaChumonEasy', (admin_signed_in? ? admin_menus_path : root_path ), class: "logo" %>
-        <ul class="flex">
 
-          <% if admin_signed_in? %>
-            <li><%= link_to '商品一覧',  admin_menus_path %></li>
-            <li><%= link_to '注文履歴一覧',  admin_orders_path %></li>
-            <li><%= link_to 'ジャンル一覧',  admin_genres_path %></li>
-            <li><%= link_to 'テーブル番号一覧',   admin_customer_tables_path %></li>
-            <li><%= button_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
-          <% elsif customer_table_signed_in? %>
-          <%# binding.pry %>
-            <p>ようこそ、<%= current_customer_table.customer_tables_name %>さん!</p>
-            <li><%= link_to '商品一覧', menus_path %></li>
-            <li><%= link_to '注文履歴一覧', orders_path %></li>
-            <li><%= link_to 'カート', cart_items_path %></li>
-            <li><%= button_to 'ログアウト', destroy_customer_table_session_path, method: :delete %></li>
-            <!--ログイン前は両者ともに表示なしでOK!-->
-
-            <%# if admin_signed_in? %>
-              <%#= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
-            <%# else %>
-              <%#= link_to 'ログイン', new_admin_sessio_path %>
-            <%# end %>
-
-            <%# if customer_table_signed_in? %>
-              <%#= link_to 'ログアウト', destroy_customer_table_session_path, method: :delete %>
-            <%# else %>
-              <%#= link_to 'ログイン', new_customer_table_session_path %>
-            <%# end %>
-            <!--ログインログアウトで表示が変化するかの実験用。テストデプロイ後に消去する-->
-
-
-
-          <% end %>
     <!--    </ul>-->
         <%# if admin_signed_in? %>
           <%#= form_tag(admin_search_path, method: :get) do %>

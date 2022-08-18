@@ -1,6 +1,6 @@
 class Public::CartItemsController < ApplicationController
    # before_action :authenticate_customer!
-  # before_action :set_cart_item, only: [:create, :update, :destroy]
+   #before_action :set_cart_item, only: [:create, :update, :destroy]
 
   def index
     @cart_items = current_customer_table.cart_items #.includes(:menu) # n+1問題向けなので時間があれば....
@@ -13,7 +13,8 @@ class Public::CartItemsController < ApplicationController
       redirect_to cart_items_path
     else
       @cart_item = current_customer_table.cart_items.new(cart_item_params)
-      @cart_item.menus_id = @menu.id
+      @menu = Menu.find(params[:cart_item][:menu_id])
+      @cart_item.menu_id = @menu.id
       if @cart_item.save
         redirect_to cart_items_path
       else
@@ -28,12 +29,12 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
+    @cart_item = CartItem.find(params[:id])
     @cart_item.destroy if @cart_item
     redirect_to cart_items_path
   end
 
   def all_destroy
-
     current_customer_table.cart_items.all_destroy
     redirect_to cart_items_path
   end
