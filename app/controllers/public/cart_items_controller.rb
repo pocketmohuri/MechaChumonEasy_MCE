@@ -3,7 +3,7 @@ class Public::CartItemsController < ApplicationController
    #before_action :set_cart_item, only: [:create, :update, :destroy]
 
   def index
-    @cart_items = current_customer_table.cart_items #.includes(:menu) # n+1問題向けなので時間があれば....
+    @cart_items = current_customer_table.cart_items#.includes(:menu) # n+1問題向けなので時間があれば....
   end
 
   def create
@@ -15,6 +15,7 @@ class Public::CartItemsController < ApplicationController
       @cart_item = current_customer_table.cart_items.new(cart_item_params)
       @menu = Menu.find(params[:cart_item][:menu_id])
       @cart_item.menu_id = @menu.id
+      @cart_item.price = @menu.price
       if @cart_item.save
         redirect_to cart_items_path
       else
@@ -24,6 +25,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
+    @cart_item = CartItem.find(params[:id])
     @cart_item.update(cart_item_params) if @cart_item
     redirect_to cart_items_path
   end
@@ -35,7 +37,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def all_destroy
-    current_customer_table.cart_items.all_destroy
+    current_customer_table.cart_items.destroy_all
     redirect_to cart_items_path
   end
 

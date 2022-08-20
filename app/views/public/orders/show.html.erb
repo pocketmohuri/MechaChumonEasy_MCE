@@ -10,12 +10,12 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>注文日</td>
-				<td><%= @order.created_at_jst.strftime('%Y/%m/%d') %></td>
+				<td>注文時間</td>
+				<td><%= @order.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></td>
 			</tr>
 			<tr>
 				<td>ステータス</td>
-				<td><%= @order.status_i18n %></td>
+				<td><%= @order.status %></td>
 			</tr>
 		</tbody>
 	</table>
@@ -25,7 +25,7 @@
 			<thead>
 				<tr>
 					<th colspan="2">商品名</th>
-					<th>単価(税込)</th>
+					<th>金額</th>
 					<th>数量</th>
 					<th>小計</th>
 				</tr>
@@ -40,7 +40,7 @@
 						<td><%= link_to menu.menu_name, menu_path(menu) %></td>
 						<td class="text-right"><%= order_detail.price %>円</td>
 						<td class="text-center"><%= order_detail.amount %></td>
-						<td class="text-right"><%= order_detail.subtotal %>円</td>
+						<td class="text-right"><%= order_detail.price * order_detail.amount %>円</td>
 					</tr>
 				<% end %>
 			</tbody>
@@ -57,11 +57,7 @@
 			<tbody>
 				<tr>
 					<td>商品合計</td>
-					<td><%= @order.order_details.sum(&:subtotal) %>円</td>
-				</tr>
-				<tr>
-					<td>総計</td>
-					<td class="bold"><%= @order.grand_total %>円</td>
+					<td><%= @order.total_payment %>円</td>
 				</tr>
 			</tbody>
 		</table>

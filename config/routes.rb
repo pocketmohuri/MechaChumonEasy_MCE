@@ -18,14 +18,14 @@ Rails.application.routes.draw do
 
 #mydomain.com/menues
   scope module: :public do
-    get 'about' => 'homes#about', as: 'about'
+     get 'about' => 'homes#about', as: 'about'
     resources :menus, only:[:index, :show]
+    delete 'cart_items/all_destroy' => 'cart_items#all_destroy', as: 'all_destroy_cart_items'
     resources :cart_items, only:[:new, :index, :create, :update, :destroy]
     resources :comments,  only:[:new, :create, :destroy]
-    delete 'cart_items/all_destroy' => 'cart_items#all_destroy', as: 'all_destroy_cart_items'
-    resources :orders, only:[:new, :create, :index, :show]
-    post 'orders/confirm' => 'orders#confirm', as: 'confirm_orders'
+    get 'orders/confirm' => 'orders#confirm', as: 'confirm_orders'
     get 'orders/complete' => 'orders#complete', as: 'complete_orders'
+    resources :orders, only:[:new, :create, :index, :show]
     resources :customer_tables, only:[:new, :show]
     #tablesがながのケーキでいうcustomerテーブル。
   end
@@ -39,12 +39,12 @@ Rails.application.routes.draw do
     resources :order_details, only:[:update]
     resources :customer_tables, only:[:index, :edit, :update, :new, :create]
   end
-  
+
   devise_scope :customer_table do
     root to: 'public/sessions#new'
   end
-  
-  
+
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

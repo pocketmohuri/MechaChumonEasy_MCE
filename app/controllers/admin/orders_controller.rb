@@ -4,18 +4,19 @@ class Admin::OrdersController < ApplicationController
 
   def index
     if params[:customer_tables_name]
-      @customer = Customer.find(params[:customer_tables_name])
-      @orders = @customer.orders.page(params[:page]).reverse_order
+      @customer_table = CustomerTable.find(params[:customer_tables_name])
+      @orders = @customer_table.orders.page(params[:page]).reverse_order
     elsif params[:created_at] == "today"
-      @orders = Order.ordered_today.includes(:customer_tables).page(params[:page]).reverse_order
+      @orders = Order.ordered_today.includes(:customer_table).page(params[:page]).reverse_order
     else
-      @orders = Order.includes(:customer_tables).page(params[:page]).reverse_order
+      @orders = Order.includes(:customer_table).page(params[:page]).reverse_order
     end
   end
 
   def show
-    @order_details = @order.order_details.includes(:item)
-    @customer = @order.customer
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
+    @customer_table = @order.customer_table
   end
 
   def update

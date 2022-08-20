@@ -1,20 +1,26 @@
 <div class="container">
+  <div class="row">
+    <div class="col-12">
+        <h2 class="text-center">テーブル番号入力画面</h2>
+          <%# form_with model: @customer_table, url: customer_table_session_path, local: true do |f| %>
+          <%= form_for(resource, as: resource_name, url: customer_table_session_path) do |f| %>
+          <%= render "/public/shared/error_messages", resource: resource %>
+          <div class="row d-flex justify-content-center">
+            <div class="col-3">
+              <div class="field d-flex justify-content-center flex-wrap">
+                <%= f.label :customer_tables_name do %>テーブル名を記述してください<% end %><br />
+                <%= f.text_field :customer_tables_name, autofocus: true, autocomplete: "customer_tables_name" %>
+              </div>
 
-    <h2>テーブル番号入力画面</h2>
-      <%# form_with model: @customer_table, url: customer_table_session_path, local: true do |f| %>
-      <%= form_for(resource, as: resource_name, url: customer_table_session_path) do |f| %>
-      <%= render "/public/shared/error_messages", resource: resource %>
+              <div class="actions mt-3 d-flex justify-content-center">
+                <%= f.submit "ログイン" %>
+              </div>
+            </div>
 
-        <div class="field">
-          <%= f.label :customer_tables_name do %>テーブル名を記述してください<% end %><br />
-          <%= f.text_field :customer_tables_name, autofocus: true, autocomplete: "customer_tables_name" %>
-        </div>
-
-        <div class="actions">
-          <%= f.submit "ログイン" %>
-        </div>
-      <% end %>
-
+          </div>
+          <% end %>
+    </div>
+  </div>
 </div>
 
 
