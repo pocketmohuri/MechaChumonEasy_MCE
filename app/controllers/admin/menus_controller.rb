@@ -1,7 +1,7 @@
 class Admin::MenusController < ApplicationController
 
   before_action :authenticate_admin!
-  before_action :ensure_menu, only: [:show, :edit, :update]
+  before_action :ensure_menu, only: [:show, :edit, :update, :destroy]
 
   def new
     @menu = Menu.new
@@ -31,6 +31,11 @@ class Admin::MenusController < ApplicationController
 
   def update
     @menu.update(menu_params) ? (redirect_to admin_menu_path(@menu)) : (render :edit)
+  end
+
+  def destroy
+   @menu.destroy
+   redirect_to admin_menus_path
   end
 
   private

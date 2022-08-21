@@ -42,7 +42,7 @@ class Public::OrdersController < ApplicationController
         @order_details.amount = cart_item.amount
         @order_details.save
       end
-
+      current_customer_table.cart_items.destroy_all
       redirect_to  complete_orders_path
     else
       render :new

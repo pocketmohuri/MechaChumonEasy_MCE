@@ -38,6 +38,7 @@
 						</table><br>
 							<div class="flex align-center pl5">
 					     <%= link_to "編集する", edit_admin_menu_path(@menu), class: "btn btn-success" %>
+					      <%= link_to "削除する", admin_menu_path(@menu), method: :delete, data: {confirm: "#{@menu.menu_name}を削除します。よろしいでしょうか？"}, class: "btn btn-success" %>
 			      	</div>
 					</div>
         </div>
