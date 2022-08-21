@@ -21,7 +21,7 @@
 				<td>注文ステータス</td>
 				<td>
 					<%= @check_status %>
-					<% if @check_status %>
+					<% if @order.status == 0 %>
 					<p>未着手</p>
 					<% elsif @order.status == 1 %>
 					<p>調理中</p>

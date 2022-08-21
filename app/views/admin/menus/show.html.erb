@@ -3,7 +3,7 @@
 		<div class='row'>
 
 			<div class="col-xl-5">
-					<%#= image_tag @menu.get_image, id: "img_prev", class: "admin_item_image" %>
+					<%= image_tag (@menu.image.attached? ? @menu.image : 'no_image.jpg'), id: "img_prev", class: "admin_menu_image" %>
 			</div>
 
         <div class="col-xl-7">

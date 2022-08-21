@@ -11,6 +11,8 @@ class OrderDetail < ApplicationRecord
       self.order.update(status: 1)
     elsif menu.pluck(:making_status).all?{ |status| status == "提供済"}
       self.order.update(status: 2)
+    elsif menu.pluck(:making_status).all?{ |status| status == "未着手"}
+      self.order.update(status: 0)
     end
   end
 

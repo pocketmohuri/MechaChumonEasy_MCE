@@ -21,7 +21,7 @@
 					<% @menus.each do |menu| %>
 					  <div class="col-md-4">
 						<%= link_to menu_path(menu) do %>
-							<%#= image_tag menus.get_image, format: "jpeg", fallback: "no-image.png" %>
+							<%= image_tag (menu.image.attached? ? menu.image : 'no_image.jpg'), id: "img_prev", class: "admin_menu_image" %>
 							<h5><%= menu.genre.genres_name %></h5>
 							<p><%= menu.menu_name %></p>
 							<p>

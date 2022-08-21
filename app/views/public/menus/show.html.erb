@@ -7,15 +7,10 @@
 			<% end %>
 		</div>
 
-	<div class="col-md-10">
+	<div class="col-md-5">
 			<h2 class="section-ttl"><%= @menu.menu_name %></h2>
 			<%#= render 'layouts/error_messages', resource: @cart_item %>
 			<!--エラーメッセージのテンプレートを完成させたのちにコメントアウトしよう-->
-
-			<div class="col-xl-6">
-				<%#= image_tag @menu.get_image, class: "menu_image" %>
-				<!--写真を入手したらコメントアウト外す。menu.rbでget_imageを定義する-->
-			</div>
 
 			<div class="col-xl-6">
 					<h4><%= @menu.introduction %></h4>
@@ -37,7 +32,7 @@
 								<%= f.submit "数量変更", class: "btn btn-primary" %>
 							<% end %>
 						<% elsif @menu.is_active? %>
-						
+
 	          <%= form_with url: cart_items_path, model: [@menu, @cart_item] do |f| %>
 								<p>数量を選択して下さい。</p>
 								<%= f.select :amount, [*(1..10)], {selected: 1} %>
@@ -50,6 +45,8 @@
 				</div>
 
 		</div>
-
+  <div class="col-md-5">
+				<%= image_tag (@menu.image.attached? ? @menu.image : 'no_image.jpg'), id: "img_prev", class: "customer_menu_show_image" %>
+	</div>
 	</div>
 </div>
