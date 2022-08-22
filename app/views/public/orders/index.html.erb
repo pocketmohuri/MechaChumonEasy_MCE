@@ -1,13 +1,21 @@
 <div class="container">
 	 <div class="">
 		<h2 class="section-ttl">注文履歴一覧</h2>
-		<table class="orders has_border">
+		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>注文時間</th>
-					<th>合計金額</th>
-					<th>ステータス</th>
-					<th>注文詳細</th>
+					<th class='col-sm-2'>
+					　注文時間
+					</th>
+					<th class='col-sm-2'>
+					　合計金額
+					</th>
+					<th class='col-sm-2'>
+						ステータス
+					</th>
+					<th class='col-sm-2'>
+						注文詳細
+					</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,14 +34,14 @@
 							<% end %>
 						</td>
 						<td><td><%= link_to "注文詳細", order_path(order), class:"show-button" %></td>
-					
+
 					</tr>
 				<% end %>
-				
+
 			</tbody>
-			
+
 		</table>
-		<%= @orders.sum {|order| order.total_payment} %>
+		<%= @orders.sum {|order| order.total_payment.nil? ? 0 : order.total_payment} %>
 		<%= paginate @orders %>
 	 </div>
 </div>

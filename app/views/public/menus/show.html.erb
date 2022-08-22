@@ -1,9 +1,12 @@
 <div class="container-fluid">
 	<div class="row">
+
 		<div class="col-md-2">
 			<h3>ジャンル一覧</h3>
 			<% @genres.each do |genre| %>
-			<%= link_to genre.genres_name, menus_path(genre_id: genre.id) %>
+				<div class='ml-5 mb-3'>
+				<%= link_to genre.genres_name, menus_path(genre_id: genre.id) %>
+				</div>
 			<% end %>
 		</div>
 

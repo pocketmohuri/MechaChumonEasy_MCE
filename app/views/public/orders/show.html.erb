@@ -1,7 +1,6 @@
-<section class="inner">
+<div class='container'>
 	<h2 class="section-ttl">注文履歴詳細</h2>
 	<table class="order_info mb3 has_border">
-		<caption class="fz18 text-left">注文情報</caption>
 		<thead>
 			<tr>
 				<th></th>
@@ -43,6 +42,7 @@
 			<tbody>
 				<% @order.order_details.includes(:menu).each do |order_detail| %>
 					<% menu = order_detail.menu %>
+					 <%= next if !menu %>
 					<tr>
 						<td>
 							<%#= attachment_image_tag item, :image, format: "jpeg", fallback: "no-image.png", class: "cart_item_image" %>
@@ -73,4 +73,4 @@
 			</tbody>
 		</table>
 	</div>
-</section>
+</div>

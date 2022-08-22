@@ -1,0 +1,2 @@
+class AdminOrderDetail < ApplicationRecord
+end
