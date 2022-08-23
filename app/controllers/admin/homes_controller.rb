@@ -4,7 +4,7 @@ class Admin::HomesController < ApplicationController
   def top
     @count = Order.ordered_today.count
   end
-  
+
   def search
     @model = params['search']['model']
     @content = params['search']['content']
@@ -54,4 +54,3 @@ class Admin::HomesController < ApplicationController
 end
 
 
-end
