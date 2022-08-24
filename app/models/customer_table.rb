@@ -7,6 +7,7 @@ class CustomerTable < ApplicationRecord
 
   has_many :cart_items
   has_many :orders
+  has_many :admin_orders
 
   validates :email, uniqueness: true
   validates :customer_tables_name, uniqueness: true

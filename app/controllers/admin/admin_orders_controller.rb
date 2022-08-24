@@ -1,6 +1,4 @@
-class Admin::OrdersController < ApplicationController
-  # before_action :authenticate_admin!
-  # before_action :ensure_order, only: [:show, :update]
+class Admin::AdminOrdersController < ApplicationController
 
   def index
     if params[:customer_tables_name]
@@ -35,6 +33,5 @@ class Admin::OrdersController < ApplicationController
   def ensure_order
     @order = Order.find(params[:id])
   end
+
 end
-
-

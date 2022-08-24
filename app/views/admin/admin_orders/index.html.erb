@@ -22,8 +22,8 @@
 		<tbody>
 			<% @admin_orders.each do |admin_order| %>
 				<tr>
-					<td><%= link_to admin_order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admin_order_path(admin_order), class: "underline" %></td>
-					<td><%= link_to admin_order.customer_table.customer_tables_name, admin_order_path(admin_order.id) %></td>
+					<td><%= link_to admin_order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admin_admin_order_path(admin_order), class: "underline" %></td>
+					<td><%= link_to admin_order.customer_table.customer_tables_name, admin_admin_order_path(admin_order.id) %></td>
 					<td><%= admin_order.admin_order_details.sum(:amount) %></td>
 					<td><%= admin_order.total_payment %>円</td>
 					<td class="text-center"><%#= order.status_i18n %></td>
@@ -34,3 +34,4 @@
 	<%= paginate @admin_orders %>
  </div>
 </div>
+

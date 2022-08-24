@@ -2,7 +2,6 @@
 		<h2 class="section-ttl">注文情報確認</h2>
 		<div class="flex">
 			<table class="confirm_cart_items mr2 mb3 has_border">
-
 				<thead>
 					<div class="row">
           <div class="col-md-8">
@@ -38,14 +37,12 @@
 						<th></th>
 					</tr>
 				</thead>
-
 				<tbody>
 					<tr>
 						<td>合計金額</td>
 						<td class="col-md-3"><%= @total_amount %>円</td>
 					</tr>
 				</tbody>
-
 			</table>
 		</div>
 		<%= form_with model:@order, url: orders_path do |f| %>

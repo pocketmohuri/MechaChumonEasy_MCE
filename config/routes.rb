@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'admin_orders/index'
+    get 'admin_orders/show'
+  end
   devise_for :customer_tables, controllers: {
       registrations: 'publilc/registrations',
       sessions: 'public/sessions'
@@ -35,8 +39,8 @@ Rails.application.routes.draw do
     resources :menus, only:[:new, :index, :create, :show, :edit, :update, :destroy]
     resources :genres, only:[:index, :create, :edit, :update]
     resources :users, only:[:new, :index, :create, :show, :edit, :update]
-    resources :orders, only:[:index, :show, :update]
-    resources :order_details, only:[:update]
+    resources :admin_orders, only:[:index, :show, :update]
+    resources :admin_order_details, only:[:update]
     resources :customer_tables, only:[:index, :edit, :update, :new, :create]
   end
 

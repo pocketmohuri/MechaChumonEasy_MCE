@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_22_120640) do
+ActiveRecord::Schema.define(version: 2022_08_24_103219) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2022_08_22_120640) do
     t.integer "amount"
     t.integer "making_status", default: 0
     t.integer "menu_id"
+    t.integer "admin_order_id"
   end
 
   create_table "admin_orders", force: :cascade do |t|
