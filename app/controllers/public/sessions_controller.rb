@@ -25,21 +25,23 @@ class Public::SessionsController < Devise::SessionsController
     if target != nil
       admin_order = AdminOrder.new
       order = Order.find_by(customer_table_id: target)
-      admin_order.status = order.status
-      admin_order.customer_table_id = order.customer_table_id
-      admin_order.total_payment = order.total_payment
-      admin_order.save
-      order_details = OrderDetail.where(order_id: order.id)
-      order_details.each do |order_detail|
-        admin_order_detail = AdminOrderDetail.new
-        admin_order_detail.admin_order_id = admin_order.id
-        admin_order_detail.menu_id = order_detail.menu_id
-        admin_order_detail.price = order_detail.price
-        admin_order_detail.amount = order_detail.amount
-        admin_order_detail.save
-        order_detail.destroy
+      if order.present?
+        admin_order.status = order.status
+        admin_order.customer_table_id = order.customer_table_id
+        admin_order.total_payment = order.total_payment
+        admin_order.save
+        order_details = OrderDetail.where(order_id: order.id)
+        order_details.each do |order_detail|
+          admin_order_detail = AdminOrderDetail.new
+          admin_order_detail.admin_order_id = admin_order.id
+          admin_order_detail.menu_id = order_detail.menu_id
+          admin_order_detail.price = order_detail.price
+          admin_order_detail.amount = order_detail.amount
+          admin_order_detail.save
+          order_detail.destroy
+        end
+        order.destroy
       end
-      order.destroy
     end
     super
   end
