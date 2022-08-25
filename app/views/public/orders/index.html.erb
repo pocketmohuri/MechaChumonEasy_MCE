@@ -34,14 +34,12 @@
 							<% end %>
 						</td>
 						<td><td><%= link_to "注文詳細", order_path(order), class:"show-button" %></td>
-
 					</tr>
 				<% end %>
-
 			</tbody>
-
 		</table>
-		<%= @orders.sum {|order| order.total_payment.nil? ? 0 : order.total_payment} %>
+		<h4>総合計金額</h4>
+		<h4><%= @orders.sum {|order| order.total_payment.nil? ? 0 : order.total_payment} %>円</h4>
 		<%= paginate @orders %>
 	 </div>
 </div>

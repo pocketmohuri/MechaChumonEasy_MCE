@@ -1,6 +1,5 @@
 <div class="container">
 		<h2 class="section-ttl">注文情報確認</h2>
-		<div class="flex">
 			<table class="confirm_cart_items mr2 mb3 has_border">
 				<thead>
 					<div class="row">
@@ -44,11 +43,10 @@
 					</tr>
 				</tbody>
 			</table>
-		</div>
+
 		<%= form_with model:@order, url: orders_path do |f| %>
 			<div class="actions text-center">
 				<%= f.submit "注文を確定する", class: "btn btn-primary submit_to_create_order" %>
 			</div>
-
 		<% end %>
 </div>
