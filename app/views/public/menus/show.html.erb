@@ -1,13 +1,17 @@
 <div class="container-fluid">
 	<div class="row">
 
-		<div class="col-md-2">
+		<div class="col-md-2 text-center">
+			<div class = 'mb-3'>
 			<h3>ジャンル一覧</h3>
+			</div>
+			<div class="genre_background">
 			<% @genres.each do |genre| %>
-				<div class='ml-5 mb-3'>
-				<%= link_to genre.genres_name, menus_path(genre_id: genre.id) %>
+				<div class='text-center'>
+				<%= link_to genre.genres_name, menus_path(genre_id: genre.id), {class: "genre_link"} %></br>
 				</div>
 			<% end %>
+			</div>
 		</div>
 
 	<div class="col-md-5 text-center">
