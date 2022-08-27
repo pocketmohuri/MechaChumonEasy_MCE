@@ -1,7 +1,6 @@
-<section class="inner">
-	<h2 class="section-ttl">未会計の注文履歴詳細</h2>
+<div style="margin-left: 60px;">
+	<h2 class="section-ttl">未会計のオーダー詳細</h2>
 	<table class="order_info mb3 has_border">
-		<caption class="fz18 text-left">注文情報</caption>
 		<thead>
 			<tr>
 				<th></th>
@@ -33,8 +32,7 @@
 		</tbody>
 	</table>
 	<div class="flex">
-		<table class="admin_order_details mr2 has_border">
-			<caption class="fz18 text-left">注文内容</caption>
+		<table class="table table-borderd border-dark">
 			<thead>
 				<tr>
 					<th>商品名</th>
@@ -53,9 +51,9 @@
 						<% else %>
 						<td><%= menu.menu_name %></td>
 						<% end %>
-						<td class="text-center"><%= order_detail.price %>円</td>
-						<td class="text-center"><%= order_detail.amount %></td>
-						<td class="text-center"><%= order_detail.price * order_detail.amount %>円</td>
+						<td><%= order_detail.price %>円</td>
+						<td><%= order_detail.amount %></td>
+						<td><%= order_detail.price * order_detail.amount %>円</td>
 						<td><%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch, local: true do |f| %>
 						<%= f.select :making_status, OrderDetail.making_statuses.keys, class: 'form-control ml-3' %>
 						<%= f.submit "更新", class: "btn btn-primary" %>
@@ -65,21 +63,19 @@
 				<% end %>
 			</tbody>
 		</table>
-
-		<table class="confirm_prices has_border">
-			<caption class="fz18 text-left">請求情報</caption>
+　<div class="row">
+		<table class="table table-bordered border-dark col-4">
 			<thead>
 				<tr>
-					<th></th>
-					<th></th>
+					<th style="border-color: black;">商品合計</th>
+					<th style="border-color: black;"><%= @order.total_payment %>円</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>商品合計</td>
-					<td><%= @order.total_payment %>円</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-</section>
+	</div>
+</div>
