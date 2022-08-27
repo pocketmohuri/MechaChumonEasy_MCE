@@ -20,6 +20,9 @@
 				<tbody>
 					<% @cart_items.each do |cart_item| %>
 						<% menu = cart_item.menu %>
+						<% unless menu.present? %>
+							<% next %>
+						<% end %>
 						<tr>
 							<!--<td>-->
 								<%#= attachment_image_tag user, :menu_image,size: "80x80", format: 'jpeg', class: "index_image",fallback: "public/image/no_image.png" %>
@@ -49,7 +52,10 @@
 						<td class="info col-md-3"><strong>合計金額</strong></td>
 						<% @total_amount = 0 %>
 						<% @cart_items.each do |cart_item| %>
-						<% @total_amount += cart_item.menu.price.to_i * cart_item.amount %>
+							<% unless cart_item.menu.present? %>
+								<% next %>
+							<% end %>
+							<% @total_amount += cart_item.menu.price.to_i * cart_item.amount %>
 						<% end %>
 	         <td class="col-md-3"><%= @total_amount %>円</td>
 	         </table>

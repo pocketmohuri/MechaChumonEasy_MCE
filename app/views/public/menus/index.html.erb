@@ -3,11 +3,13 @@
 
 		<div class='col-md-2'>
 			<h3>ジャンル一覧</h3>
+			<div class="genre_background">
 			<% @genres.each do |genre| %>
 			  <div class='ml-5 mb-3'>
-				<%= link_to genre.genres_name, menus_path(genre_id: genre.id) %></br>
+				<%= link_to genre.genres_name, menus_path(genre_id: genre.id), {class: "genre_link"} %></br>
 			  </div>
 			<% end %>
+		  </div>
 		</div>
 
 	  <div class="col-md-10">

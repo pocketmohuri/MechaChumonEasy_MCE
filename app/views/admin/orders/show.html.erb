@@ -48,7 +48,11 @@
 				<% @order_details.each do |order_detail| %>
 					<% menu = order_detail.menu %>
 					<tr>
+						<% if menu.nil? %>
+						<td>該当する商品がありません。</td>
+						<% else %>
 						<td><%= menu.menu_name %></td>
+						<% end %>
 						<td class="text-center"><%= order_detail.price %>円</td>
 						<td class="text-center"><%= order_detail.amount %></td>
 						<td class="text-center"><%= order_detail.price * order_detail.amount %>円</td>

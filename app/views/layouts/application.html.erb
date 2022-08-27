@@ -10,9 +10,9 @@
     <%= javascript_pack_tag 'application' %>
   </head>
 
-<body>
-  <%= link_to 'MechaChumonEasy', (admin_signed_in? ? admin_menus_path : root_path ), class: "logo" %>
-    <header class="mb-5" style="margin-right: 40px; "　>
+<body style="background-color: #FFFFCC">
+    <header class="border-bottom mb-5" style="height: 100px; background-color: #33FF66">
+      <%= link_to 'MechaChumonEasy', (admin_signed_in? ? admin_menus_path : root_path ), class: "logo" %>
         <ul class="nav justify-content-end">
         <% if admin_signed_in? %>
         <li class="nav-item">
@@ -27,7 +27,7 @@
         <li class="nav-item">
           <%= link_to 'テーブル番号一覧',   admin_customer_tables_path, class: "nav-link active" %>
         </li>
-        <li class="nav-item">
+        <li class="nav-item mr-5">
           <%= button_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link active" %>
         </li>
         <% elsif customer_table_signed_in? %>
