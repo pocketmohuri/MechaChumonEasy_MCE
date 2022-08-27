@@ -8,7 +8,7 @@ class Public::MenusController < ApplicationController
     else
       all_menus = Menu.where(genre_id: @genres.ids).includes(:genre)
     end
-    @menus = all_menus.page(params[:page]).per(4)
+    @menus = all_menus.page(params[:page]).per(6)
     @all_menus_count = all_menus.count
    end
 

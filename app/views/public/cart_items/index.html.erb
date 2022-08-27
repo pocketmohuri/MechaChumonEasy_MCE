@@ -6,13 +6,13 @@
 			<div class="text-right mb2">
 				<%= link_to "カートを空にする", all_destroy_cart_items_path, method: :delete, "data-confirm" => "カートを空にします。よろしいでしょうか？", class: "btn btn-danger" %>
 			</div>
-			<table class="table table-hover table-bordered col-xs-10" >
+			<table class="table table-hover table-bordered border-dark col-xs-10">
 				<thead>
 					<tr class="info">
-						<th class="col-xs-4">商品名</th>
-						<th class="col-xs-3">金額</th>
-						<th class="col-xs-2">数量</th>
-						<th class="col-xs-2">小計</th>
+						<th class="col-xs-4" style="border-color:black;">商品名</th>
+						<th class="col-xs-3" style="border-color:black;">金額</th>
+						<th class="col-xs-2" style="border-color:black;">数量</th>
+						<th class="col-xs-2" style="border-color:black;">小計</th>
 					</tr>
 				</thead>
 			</div>
@@ -27,29 +27,29 @@
 							<!--<td>-->
 								<%#= attachment_image_tag user, :menu_image,size: "80x80", format: 'jpeg', class: "index_image",fallback: "public/image/no_image.png" %>
 							<!--</td>-->
-							<td><%= link_to menu.menu_name, menu_path(menu) %></td>
-							<td class="text-right"><%= menu.price %>円</td>
-							<td>
+							<td style="border-color:black;"><%= link_to menu.menu_name, menu_path(menu) %></td>
+							<td class="text-right" style="border-color:black;"><%= menu.price %>円</td>
+							<td style="border-color:black;">
 								<%= form_with model: cart_item do |f| %>
 									<%= f.select :amount, [*(1..10)], {include_blank: false}, id: "cart_item_amount_#{cart_item.id}" %>
 									<%= f.submit "変更", class: "btn btn-primary", id: "submit_for_cart_item_#{cart_item.id}" %>
 								<% end %>
 							</td>
              <% logger.debug(cart_item.amount) %>
-							<td class="text-center">
+							<td class="text-center" style="border-color:black;">
 								<%= menu.price * cart_item.amount %>円
 								<%= link_to "削除", cart_item_path(cart_item), method: :delete, data: {confirm: "#{menu.menu_name}をカートから削除します。よろしいでしょうか？"}, class: "btn btn-danger" %>
 							</td>
 						</tr>
 					<% end %>
 					<tr>
-						<td></td>
-						<td><%= link_to "買い物を続ける", menus_path, class: "btn btn-primary" %></td>
-						<td></td>
+						<td style="border-color:black;"></td>
+						<td style="border-color:black;"><%= link_to "買い物を続ける", menus_path, class: "btn btn-primary" %></td>
+						<td style="border-color:black;"></td>
 						<div class="row">
     				<div class="col-md-6"><br>
       			<table class="table table-bordered">
-						<td class="info col-md-3"><strong>合計金額</strong></td>
+						<td class="info col-md-3" style="border-color:black;"><strong>合計金額</strong></td>
 						<% @total_amount = 0 %>
 						<% @cart_items.each do |cart_item| %>
 							<% unless cart_item.menu.present? %>
@@ -57,7 +57,7 @@
 							<% end %>
 							<% @total_amount += cart_item.menu.price.to_i * cart_item.amount %>
 						<% end %>
-	         <td class="col-md-3"><%= @total_amount %>円</td>
+	         <td class="col-md-3" style="border-color:black;"><%= @total_amount %>円</td>
 	         </table>
 	         </div>
 	         </div>

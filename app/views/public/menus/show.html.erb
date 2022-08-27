@@ -10,12 +10,14 @@
 			<% end %>
 		</div>
 
-	<div class="col-md-5">
-			<h2 class="section-ttl"><%= @menu.menu_name %></h2>
+	<div class="col-md-5 text-center">
+		 <div class='mb-5'>
+			<h2><%= @menu.menu_name %></h2>
 			<%#= render 'layouts/error_messages', resource: @cart_item %>
 			<!--エラーメッセージのテンプレートを完成させたのちにコメントアウトしよう-->
+		 </div>
 
-			<div class="col-xl-6">
+			<div class="col-xl-12">
 					<h4><%= @menu.introduction %></h4>
 					<p>ジャンル: <%= link_to @menu.genre.genres_name, menus_path(genre_id: @menu.genre_id) %></p>
 					<p>

@@ -25,20 +25,20 @@
 				</tbody>
 			</table>
 
-			<table class="confirm_prices has_border">
-				<thead>
-					<tr>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>合計金額</td>
-						<td class="col-md-3"><%= @total_amount %>円</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="row">
+				<table class="table table-bordered border-dark col-4">
+					<thead>
+						<tr>
+							<th style="border-color:black;">合計金額</th>
+							<th class="col-md-3" style="border-color:black;"><%= @total_amount %>円</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
 		<%= form_with model:@order, url: orders_path do |f| %>
 			<div class="actions text-center">

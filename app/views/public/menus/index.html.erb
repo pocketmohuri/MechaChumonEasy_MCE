@@ -1,11 +1,13 @@
 <div class='container-fluid'>
 	<div class='row'>
 
-		<div class='col-md-2'>
+		<div class='col-md-2 text-center'>
+			<div class = 'mb-3'>
 			<h3>ジャンル一覧</h3>
+			</div>
 			<div class="genre_background">
 			<% @genres.each do |genre| %>
-			  <div class='ml-5 mb-3'>
+			  <div class='text-center'>
 				<%= link_to genre.genres_name, menus_path(genre_id: genre.id), {class: "genre_link"} %></br>
 			  </div>
 			<% end %>
@@ -21,13 +23,13 @@
 			<% if @menus.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
 				<div class="row ml-4">
 					<% @menus.each do |menu| %>
-					  <div class="col-md-4">
+					  <div class="col-md-4 text-center">
 						<%= link_to menu_path(menu) do %>
 							<%= image_tag (menu.image.attached? ? menu.image : 'no_image.jpg'), id: "img_prev", class: "admin_menu_image" %>
-							<h5><%= menu.genre.genres_name %></h5>
-							<p><%= menu.menu_name %></p>
+							<h5><%= menu.menu_name %></h5>
+							<h8><%= menu.genre.genres_name %></h8>
 							<p>
-								<%= menu.price %>円
+								<h5><%= menu.price %>円</h5>
 								<% if menu.is_active? %>
 									<span class="text-active">販売中</span>
 								<% else %>
