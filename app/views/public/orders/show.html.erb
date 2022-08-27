@@ -15,9 +15,8 @@
 			<tr>
 				<td>ステータス</td>
 				<td>
-					<%= @check_status %>
 					<% if @order.status == 0 %>
-					<p></p>
+					<p>調理中</p>
 					<% elsif @order.status == 1 %>
 					<p>調理中</p>
 					<% elsif @order.status == 2 %>
@@ -47,7 +46,13 @@
 						<td><%= order_detail.price %>円</td>
 						<td><%= order_detail.amount %></td>
 						<td><%= order_detail.price * order_detail.amount %>円</td>
-            <td><%= status_message(order_detail.making_status) %></td>
+            <td>
+            <% if order_detail.making_status == '未着手' %>
+							<p>調理中</p>
+						<% else %>
+							 <%= order_detail.making_status %>
+						<% end %>
+						</td>
 					</tr>
 				<% end %>
 			</tbody>

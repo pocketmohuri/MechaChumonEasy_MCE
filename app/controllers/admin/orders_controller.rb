@@ -7,15 +7,15 @@ class Admin::OrdersController < ApplicationController
       @customer_table = CustomerTable.find(params[:customer_tables_name])
       @orders = @customer_table.orders.page(params[:page]).reverse_order
     elsif params[:created_at] == "today"
-      @admin_orders = AdminOrder.ordered_today.includes(:customer_table).page(params[:page]).reverse_order
+      @orders = Order.ordered_today.includes(:customer_table).page(params[:page]).reverse_order
     else
-      @admin_orders = AdminOrder.includes(:customer_table).page(params[:page]).reverse_order
+      @orders = Order.includes(:customer_table).page(params[:page]).reverse_order
     end
   end
 
   def show
-    @order = AdminOrder.find(params[:id])
-    @order_details = @order.admin_order_details
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
     @customer_table = @order.customer_table
   end
 
