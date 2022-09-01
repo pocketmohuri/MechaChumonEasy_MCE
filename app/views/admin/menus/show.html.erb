@@ -4,7 +4,14 @@
 
 			<div class="col-xl-5">
 					<%= image_tag (@menu.image.attached? ? @menu.image : 'no_image.jpg'), id: "img_prev", class: "admin_menu_image" %>
+					<div class="mt-3 tag-box">
+						<% @menu.tags.each do |tag| %>
+					  <span class="label"><%= tag.name %></span>
+						<% end %>
+					</div>
 			</div>
+
+
 
         <div class="col-xl-7">
         	<div align="center">

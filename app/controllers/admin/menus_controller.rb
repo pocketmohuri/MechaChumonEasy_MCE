@@ -21,6 +21,12 @@ class Admin::MenusController < ApplicationController
   def create
     @menu = Menu.new(menu_params)
     @menu.save! ? (redirect_to admin_menus_path(@menu)) : (render :new)
+    if @menu.image.present?
+      tags = Vision.get_image_data(@menu.image)
+      tags.each do |tag|
+        @menu.tags.create(name: tag)
+      end
+    end
   end
 
   def show
