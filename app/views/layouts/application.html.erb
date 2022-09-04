@@ -11,7 +11,7 @@
   </head>
 
 <body style="background-color: #FFFFCC">
-    <header class="border-bottom mb-5" style="height: 100px; background-color: #33FF66">
+    <header class="border-bottom" style="height: 100px; background-color: #33FF66">
       <ul class="nav justify-content-around" style="padding-top: 30px;">
         <li class="nav-item">
           <i class="fas fa-utensils"></i>
@@ -64,7 +64,10 @@
 
       </div>
     </header>
-    <%= yield %>
+    <main class = "mt-5">
+      <%= yield %>
+    </main>
+
   </body>
 </html>
 
