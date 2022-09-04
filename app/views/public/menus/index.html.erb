@@ -26,16 +26,18 @@
 					  <div class="col-md-4 text-center">
 						<%= link_to menu_path(menu) do %>
 							<%= image_tag (menu.image.attached? ? menu.image : 'no_image.jpg'), id: "img_prev", class: "admin_menu_image" %>
-							<h5><%= menu.menu_name %></h5>
-							<h8><%= menu.genre.genres_name %></h8>
-							<p>
-								<h5><%= menu.price %>円</h5>
-								<% if menu.is_active? %>
-									<span class="text-active">販売中</span>
-								<% else %>
-									<span class="text-invalid">販売停止中</span>
-								<% end %>
-							</p>
+						  <div class="box30">
+						    <h5><%= menu.menu_name %></h5>
+							  <h8><%= menu.genre.genres_name %></h8>
+							  <p>
+									<h5><%= menu.price %>円</h5>
+									<% if menu.is_active? %>
+										<span class="text-active">販売中</span>
+									<% else %>
+										<span class="text-invalid">販売停止中</span>
+									<% end %>
+							  </p>
+						  </div>
 						<% end %>
 					  </div>
 					<% end %>

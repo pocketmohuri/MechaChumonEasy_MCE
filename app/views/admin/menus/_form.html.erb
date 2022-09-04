@@ -25,28 +25,30 @@
 					</tr>
 					<tr>
 						<td><%= f.label :introduction, "商品説明" %></td>
-						<td><%= f.text_area :introduction, rows: 3 %></td>
+						<td><%= f.text_area :introduction, rows: 5, cols: 50, class: "mt-3 mb-3" %></td>
 					</tr>
 					<tr>
 						<td><%= f.label :genre_id, "ジャンル" %></td>
-						<td class="select_field"><%= f.collection_select :genre_id, Genre.all, :id, :genres_name %></td>
+						<td class="select_field"><div class="mb-3"><%= f.collection_select :genre_id, Genre.all, :id, :genres_name %></div></td>
 					</tr>
 					<tr>
 						<td><%= f.label :price, "価格" %></td>
-						<td><%= f.number_field :price %> 円</td>
+						<td><%= f.number_field :price, class: "mb-3" %> 円</td>
 					</tr>
 					<tr>
-						<td><%= f.label :sales_status, "販売ステータス" %></td>
+						<td><%= f.label :sales_status, "販売ステータス", class: "mb-3" %></td>
 						<td class="select_field">
-							<%= f.radio_button :is_active, true %>
-							<%= f.label :is_active, "販売中", class: "text-active" %>
-							<%= f.radio_button :is_active, false %>
-							<%= f.label :is_active, "販売停止中", class: "text-invalid" %>
+							<div class="mb-3">
+								<%= f.radio_button :is_active, true %>
+								<%= f.label :is_active, "販売中", class: "text-active m-0"  %>
+								<%= f.radio_button :is_active, false %>
+								<%= f.label :is_active, "販売停止中", class: "text-invalid m-0" %>
+							</div>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			<div class="flex align-center pl5">
+			<div class="text-center">
 				<%= f.submit submit, class: "btn btn-primary" %>
 			</div>
 		<% end %>
