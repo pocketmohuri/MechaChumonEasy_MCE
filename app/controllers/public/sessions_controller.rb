@@ -24,6 +24,7 @@ class Public::SessionsController < Devise::SessionsController
     target = session[:customer_table_id]
     if target != nil
       admin_order = AdminOrder.new
+      CartItem.where(customer_table_id: target).destroy_all
       orders = Order.where(customer_table_id: target)
       orders.each do |order|
         if order.present?
