@@ -1,6 +1,6 @@
 class Admin::CustomerTablesController < ApplicationController
   def index
-    @customer_tables = CustomerTable.all
+    @customer_tables = CustomerTable.all.page(params[:page])
   end
 
   def edit

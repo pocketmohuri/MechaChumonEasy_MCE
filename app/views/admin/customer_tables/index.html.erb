@@ -1,29 +1,32 @@
 <div class="container">
 	<h2>テーブル番号管理</h2>
-		<table class='table table-bordered'>
-				<h4>テーブル番号新規登録</h4>
-		  	  <%= link_to 'テーブル番号を作成する', new_admin_customer_table_path %>
-		</table>
+	<div class="d-flex">
+		<div class="w-25">
+			<h4>テーブル番号新規登録</h4>
+			<%= link_to 'テーブル番号を作成する', new_admin_customer_table_path %>
+		</div>
 
-	<div class="row">
-		<div class="col-md-4">
+		<div class="w-75">
 			<h3>テーブル番号一覧</h3>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>テーブル番号</th>
-
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-			    <% @customer_tables.each do |customer_table| %>
+			<div class="col-md-4">
+				<table class="table">
+					<thead>
 						<tr>
-							<td>  <%= link_to customer_table.customer_tables_name, edit_admin_customer_table_path(customer_table) %></td>
+							<th>テーブル番号</th>
+
+							<th></th>
 						</tr>
-					<% end %>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+				    <% @customer_tables.each do |customer_table| %>
+							<tr>
+								<td>  <%= link_to customer_table.customer_tables_name, edit_admin_customer_table_path(customer_table) %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
+	<%= paginate @customer_tables %>
 </div>
